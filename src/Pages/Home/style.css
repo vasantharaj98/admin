@@ -1,0 +1,30 @@
+.banner{
+    position: relative;
+    margin-top: 50px;
+    /* background: url(../../Assets/Images/Frame_1.png);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position: center; */
+}
+@media (max-width: 500px){
+    .footer_con{
+        width: 100%;
+    }
+    .banner_text{
+        top: 10%;
+        left: 10%;
+    }
+    .banner_bg{
+        height: 45vh;
+        object-fit: cover;
+    }
+    .head_text{
+        font-size: 12px;
+    }
+    .para{
+        margin-top: 0px;
+        font-size: 10px;
+    }
+}
