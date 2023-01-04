@@ -9,8 +9,9 @@ import Paper from '@mui/material/Paper';
 
 export default function BasicTable({user}) {
   user.sort(function(x, y){
-    return new Date(x.createdAt) - new Date(y.createdAt);
+    return y.createdAt.localeCompare(x.createdAt);
   });
+
   return (
     <TableContainer component={Paper} sx={{marginTop: 2}}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

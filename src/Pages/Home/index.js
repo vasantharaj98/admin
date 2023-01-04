@@ -9,7 +9,7 @@ const Home = () => {
   const [user, setUser] = useState([]);
 
   const fetchData = async () => {
-    return await fetch("https://cloud-9-bar-grill.onrender.com/dish")
+    return await fetch("http://localhost:5000/dish")
           .then((response) => response.json())
           .then((data) => setUser(data));
   }
@@ -23,8 +23,6 @@ const Home = () => {
     return()=>clearInterval(interval);
     
   },[])
-
-  console.log("user", user);
 
   return (
     <>
