@@ -24,6 +24,8 @@ const Home = () => {
     
   },[])
 
+  console.log("user", user);
+
   return (
     <>
     <Container sx={{marginTop: 12}}>
