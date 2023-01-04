@@ -9,7 +9,7 @@ const Home = () => {
   const [user, setUser] = useState([]);
 
   const fetchData = async () => {
-    return await fetch("http://localhost:5000/dish")
+    return await fetch("https://cloud-9-bar-grill.onrender.com/dish")
           .then((response) => response.json())
           .then((data) => setUser(data));
   }
