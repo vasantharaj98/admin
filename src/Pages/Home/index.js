@@ -26,7 +26,7 @@ const Home = () => {
 
   return (
     <>
-    <Container sx={{marginTop: 12}}>
+    <Container sx={{py: 12}}>
             <Typography className='un_line' variant="h" component="h2">Today's Orders</Typography>
             <Table user={user}/>
     </Container>

@@ -40,9 +40,9 @@ export default function BasicTable({user}) {
             >
               <TableCell component="th" scope="row">
                 <div>{`0${new Date(row?.createdAt).getDate()}`.slice(-2)}-{`0${new Date(row?.createdAt).getMonth()+1}`.slice(-2)}-{new Date(row?.createdAt).getFullYear()}</div> 
-                <div>{new Date(row?.createdAt).getHours()}:{new Date(row?.createdAt).getMinutes()+1}:{new Date(row?.createdAt).getSeconds()}</div>
+                <div>{`0${new Date(row?.createdAt).getHours()}`.slice(-2)}:{`0${new Date(row?.createdAt).getMinutes()+1}`.slice(-2)}:{`0${new Date(row?.createdAt).getSeconds()}`.slice(-2)}</div>
               </TableCell>
-              <TableCell component="th" scope="row">
+              <TableCell align="center">
                 {row.name}
               </TableCell>
               <TableCell align="center">{row.phone}</TableCell>
