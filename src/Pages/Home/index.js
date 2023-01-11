@@ -4,19 +4,22 @@ import Table from '../../components/Table/index'
 
 import './style.css';
 
-const Home = () => {
+const Home = ({setLoader}) => {
 
   const [user, setUser] = useState([]);
 
   const fetchData = async () => {
     return await fetch("https://cloud-9-bar-grill.onrender.com/dish")
           .then((response) => response.json())
-          .then((data) => setUser(data));
+          .then((data) => {
+            setUser(data);
+            setLoader(false);
+          });
   }
 
   useEffect(() => {
     fetchData();
-
+    setLoader(true);
     const interval=setInterval(()=>{
         fetchData();
      },10000)

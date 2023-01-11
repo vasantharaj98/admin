@@ -2,11 +2,11 @@ import React from 'react';
 import Header from '../src/Layouts/Header/index';
 import Home from '../src/Pages/Home/index';
 
-const RouteRoute = () => {
+const RouteRoute = ({setLoader}) => {
   return (
     <>
     <Header/>
-    <Home/>
+    <Home setLoader={setLoader}/>
     </>
   )
 }

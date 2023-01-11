@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 export default function BasicTable({user}) {
-  user.sort(function(x, y){
+  user?.sort(function(x, y){
     return y.createdAt.localeCompare(x.createdAt);
   });
 
