@@ -81,6 +81,10 @@ const Home = ({setLoader}) => {
     if(value){
     fetchData(value);
     setLoader(true);
+    const interval=setInterval(()=>{
+      fetchData(value);
+   },10000)
+  return()=>clearInterval(interval);
   }
   },[value]);
 
