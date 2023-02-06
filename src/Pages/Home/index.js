@@ -4,55 +4,55 @@ import Table from '../../components/Table/index';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import './style.css';
-// import io from 'socket.io-client';
+import io from 'socket.io-client';
 
-// const socket = io('https://cloud-9-bar-grill.onrender.com', {
-//   withCredentials: true,
-//   extraHeaders: {
-//     "my-custom-header": "abcd"
-//   }
-// });
+const socket = io('https://cloud-9-bar-grill.onrender.com', {
+  withCredentials: true,
+  extraHeaders: {
+    "my-custom-header": "abcd"
+  }
+});
 
 const Home = ({setLoader}) => {
 
   const [user, setUser] = useState([]);
   const [value, setValue] = useState(null);
   const [orderdate, setOrderdate] = useState([]);
-  // const [isConnected, setIsConnected] = useState(socket.connected);
-  // const [lastPong, setLastPong] = useState([]);
-  // const [soc, setSoc] = useState([]);
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [lastPong, setLastPong] = useState([]);
+  const [soc, setSoc] = useState([]);
 
-  // useEffect(() => {
-  //   socket.on('connect', () => {
-  //     setIsConnected(true);
-  //   });
+  useEffect(() => {
+    socket.on('connect', () => {
+      setIsConnected(true);
+    });
 
-  //   socket.on('disconnect', () => {
-  //     setIsConnected(false);
-  //   });
+    socket.on('disconnect', () => {
+      setIsConnected(false);
+    });
 
-  //   socket.on('prevOrders', (data) => {
-  //     setLastPong(data);
-  //   });
+    socket.on('prevOrders', (data) => {
+      setLastPong(data);
+    });
 
-  //   socket.on('order', (data) => {
-  //     setSoc(data);
-  //     // const dataDate = new Date(data?.createdAt).getFullYear()+'-'+`0${new Date(data?.createdAt).getMonth()+1}`.slice(-2)+'-'+`0${new Date(data?.createdAt).getDate()}`.slice(-2);
-  //     setLastPong(prevState => [...prevState, data]);
-  //   });
+    socket.on('order', (data) => {
+      setSoc(data);
+      // const dataDate = new Date(data?.createdAt).getFullYear()+'-'+`0${new Date(data?.createdAt).getMonth()+1}`.slice(-2)+'-'+`0${new Date(data?.createdAt).getDate()}`.slice(-2);
+      setLastPong(prevState => [...prevState, data]);
+    });
 
 
-  //   return () => {
-  //     socket.off('connect');
-  //     socket.off('disconnect');
-  //     socket.off('prevOrders');
-  //   };
-  // }, []);
+    return () => {
+      socket.off('connect');
+      socket.off('disconnect');
+      socket.off('prevOrders');
+    };
+  }, []);
 
   //https://cloudninebarandgrill.com/api/orderDate
 
   const fetchYear = async () => {
-    return await fetch("https://cloudninebarandgrill.com/api/orderDate")
+    return await fetch("https://cloud-9-bar-grill.onrender.com/orderDate")
           .then((response) => response.json())
           .then((data) => {
             setOrderdate(data);
@@ -64,7 +64,7 @@ const Home = ({setLoader}) => {
   //https://cloudninebarandgrill.com/api/dish/${val}
 
   const fetchData = async (val) => {
-    return await fetch(`https://cloudninebarandgrill.com/api/dish/${val}`)
+    return await fetch(`https://cloud-9-bar-grill.onrender.com/dish/${val}`)
           .then((response) => response.json())
           .then((data) => {
             setUser(data);
@@ -81,12 +81,12 @@ const Home = ({setLoader}) => {
     if(value){
     fetchData(value);
     setLoader(true);
-    const interval=setInterval(()=>{
-      fetchData(value);
-   },10000)
-  return()=>clearInterval(interval);
+  //   const interval=setInterval(()=>{
+  //     fetchData(value);
+  //  },10000)
+  // return()=>clearInterval(interval);
   }
-  },[value]);
+  },[value, soc]);
 
   return (
     <>
